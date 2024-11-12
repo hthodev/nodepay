@@ -69,11 +69,15 @@ async def render_profile_info(proxy, token):
 async def call_api(url, data, proxy, token, max_retries=3):
     headers = {
         "Authorization": f"Bearer {token}",
+        "Cookie": "",
         "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
-        "Accept": "application/json",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Referer": "https://app.nodepay.ai"
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "accept-language": "en-US,en;q=0.9",
+        "origin": "https://app.nodepay.ai",
+        "priority": "u=1, i",
+        "referer": "https://app.nodepay.ai/",
+        "User-Agent": "PostmanRuntime/7.42.0"
     }
 
     for attempt in range(max_retries):
@@ -229,8 +233,6 @@ async def send_data_to_server(url, data, token):
 
 
 async def main():
-    print("Dân cày airdrop!")
-
     url = "https://api.nodepay.org/api/auth/session?"
     data = {
         "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
